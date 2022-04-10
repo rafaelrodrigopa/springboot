@@ -44,10 +44,15 @@ public class UserService {
 	
 	public User update(Long id, User obj) {
 		
-		@SuppressWarnings("deprecation")
-		User entity = repository.getOne(id);
-		updateData(entity, obj);
-		return repository.save(entity);
+		try {
+			@SuppressWarnings("deprecation")
+			User entity = repository.getOne(id);
+			updateData(entity, obj);
+			return repository.save(entity);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	private void updateData(User entity, User obj) {
 		entity.setName(obj.getName());
